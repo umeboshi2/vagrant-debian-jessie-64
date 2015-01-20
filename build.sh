@@ -23,8 +23,8 @@ set -o errexit
 
 # Configurations
 BOX="debian-wheezy-64"
-ISO_URL="http://cdimage.debian.org/debian-cd/7.7.0/amd64/iso-cd/debian-7.7.0-amd64-netinst.iso"
-ISO_MD5="0b31bccccb048d20b551f70830bb7ad0"
+ISO_URL="http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-7.8.0-amd64-netinst.iso"
+ISO_MD5="a91fba5001cf0fbccb44a7ae38c63b6e"
 
 # location, location, location
 FOLDER_BASE=$(pwd)
@@ -87,6 +87,10 @@ fi
 if [ -f "${FOLDER_BASE}/${BOX}.box" ]; then
   echo "Removing old ${BOX}.box" ...
   rm "${FOLDER_BASE}/${BOX}.box"
+fi
+if VBoxManage showvminfo "${BOX}" >/dev/null 2>/dev/null; then
+  echo "Unregistering vm ..."
+  VBoxManage unregistervm "${BOX}" --delete
 fi
 
 # Setting things back up again
@@ -248,3 +252,4 @@ vagrant package --base "${BOX}" --output "${BOX}.box"
 # http://blog.ericwhite.ca/articles/2009/11/unattended-debian-lenny-install/
 # http://docs-v1.vagrantup.com/v1/docs/base_boxes.html
 # http://www.debian.org/releases/stable/example-preseed.txt
+
