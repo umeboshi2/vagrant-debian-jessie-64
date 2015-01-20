@@ -197,6 +197,9 @@ if ! VBoxManage showvminfo "${BOX}" >/dev/null 2>&1; then
     --pae off \
     --rtcuseutc on
 
+  VBoxManage modifyvm "${BOX}" \
+    --natnet1 10.0.3.0/24
+
   VBoxManage storagectl "${BOX}" \
     --name "IDE Controller" \
     --add ide \
