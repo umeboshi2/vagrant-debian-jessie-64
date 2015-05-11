@@ -5,6 +5,7 @@ hash vagrant 2>/dev/null || { echo >&2 "ERROR: vagrant not found.  Aborting."; e
 hash VBoxManage 2>/dev/null || { echo >&2 "ERROR: VBoxManage not found.  Aborting."; exit 1; }
 hash 7z 2>/dev/null || { echo >&2 "ERROR: 7z not found. Aborting."; exit 1; }
 hash curl 2>/dev/null || { echo >&2 "ERROR: curl not found. Aborting."; exit 1; }
+hash cpio 2>/dev/null || { echo >&2 "ERROR: cpio not found. Aborting."; exit 1; }
 
 VBOX_VERSION="$(VBoxManage --version)"
 
@@ -19,12 +20,12 @@ fi
 
 set -o nounset
 set -o errexit
-#set -o xtrace
+set -o xtrace
 
 # Configurations
-BOX="debian-wheezy-64"
-ISO_URL="http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-7.8.0-amd64-netinst.iso"
-ISO_MD5="a91fba5001cf0fbccb44a7ae38c63b6e"
+BOX="debian-jessie"
+ISO_URL="http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-8.0.0-amd64-netinst.iso"
+ISO_MD5="d9209f355449fe13db3963571b1f52d4"
 
 # location, location, location
 FOLDER_BASE=$(pwd)
